@@ -22,8 +22,8 @@ public class ResultUtil {
     public static Result error(Integer code ,String msg){
         Result result = new Result();
         result.setCode(code);
-        result.setMsg("失败");
-        result.setData(msg);
+        result.setMsg(msg);
+        result.setData(null);
         return result;
     }
 }

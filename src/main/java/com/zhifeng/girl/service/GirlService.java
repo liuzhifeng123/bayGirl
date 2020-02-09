@@ -1,12 +1,14 @@
 package com.zhifeng.girl.service;
 
 import com.zhifeng.girl.domain.Girl;
+import com.zhifeng.girl.enums.ResultEnum;
 import com.zhifeng.girl.exception.GirlException;
 import com.zhifeng.girl.reposiltory.GirlReposiltory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,7 +16,7 @@ import java.util.Optional;
  * 2020/2/6 23:57
  */
 @Service
-public class Girlservice {
+public class GirlService {
     @Autowired
     private GirlReposiltory girlReposiltory;
 
@@ -33,16 +35,22 @@ public class Girlservice {
         return  girlReposiltory.save(girlB);
     }
 
-    public void  getAge(Integer id) throws Exception{
+    public Optional<Girl> getAge(Integer id) throws Exception{
         Optional<Girl>  girl = girlReposiltory.findById(id);
         Integer  age = girl.get().getAge();
 
        if(age<10){
-           throw  new GirlException(100,"还在上小学吧");
+           throw  new GirlException(ResultEnum.PRIMARY_SCHOOL);
        }else if (age>10 && age < 16){
-           throw  new GirlException(101,"还在上初中吧");
+           throw  new GirlException(ResultEnum.MIDDLE_SCHOOL);
+       }else if (age>16 && age<20) {
+           throw new GirlException(ResultEnum.HIGH_SCHOOL);
+       }else {
+           return girl;
        }
+    }
 
-
+    public  Optional<Girl> findOne(Integer id){
+        return   girlReposiltory.findById(id);
     }
 }

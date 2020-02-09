@@ -3,7 +3,7 @@ package com.zhifeng.girl.controller;
 import com.zhifeng.girl.domain.Girl;
 import com.zhifeng.girl.domain.Result;
 import com.zhifeng.girl.reposiltory.GirlReposiltory;
-import com.zhifeng.girl.service.Girlservice;
+import com.zhifeng.girl.service.GirlService;
 import com.zhifeng.girl.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -23,7 +23,7 @@ public class GirlController {
     private GirlReposiltory girlReposiltory;
 
     @Autowired
-    private Girlservice girlservice;
+    private GirlService girlservice;
 
     /**
      * 查询所有女生
@@ -120,7 +120,8 @@ public class GirlController {
     }
 
     @GetMapping("getAge")
-    public void getAge(@RequestParam("id") Integer id) throws Exception{
-        girlservice.getAge(id);
+    public Result getAge(@RequestParam("id") Integer id) throws Exception{
+
+       return ResultUtil.success(girlservice.getAge(id));
     }
 }

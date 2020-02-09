@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
+ * 配置实体类
  * Created by zhifeng
  * 2020/2/6 15:59
  */

@@ -58,7 +58,7 @@ public class HttpAsperct {
 
     @AfterReturning(returning = "object", pointcut = "log()")
     public  void  doAfterReturning(Object object){
-     //   logger.info("response={}",object.toString());
+        logger.info("response={}",object.toString());
 
     }
 
